@@ -6,6 +6,9 @@ use App\Enums\OrderDeliveryTypeEnum;
 use App\Enums\OrderPaymentTypeEnum;
 use App\Enums\OrderStatusEnum;
 use App\Filament\Resources\OrderResource\Pages;
+use App\Filament\Resources\OrderResource\Pages\CreateOrder;
+use App\Filament\Resources\OrderResource\Pages\EditOrder;
+use App\Filament\Resources\OrderResource\Pages\ListOrders;
 use App\Models\Order;
 use App\Models\Product;
 use Filament\Forms\Components\Repeater;
@@ -162,9 +165,9 @@ class OrderResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListOrders::route('/'),
-            'create' => Pages\CreateOrder::route('/create'),
-            'edit' => Pages\EditOrder::route('/{record}/edit'),
+            'index' => ListOrders::route('/'),
+            'create' => CreateOrder::route('/create'),
+            'edit' => EditOrder::route('/{record}/edit'),
         ];
     }
 
