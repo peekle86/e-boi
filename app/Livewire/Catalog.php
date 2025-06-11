@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\CartService;
 use App\Models\Product;
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -28,6 +29,18 @@ class Catalog extends Component
 
         return view('livewire.catalog', [
             'products' => $products,
+            'cartService' => app(CartService::class),
         ]);
+    }
+
+    public function toggleCartItem(string $productSlug): void
+    {
+        $cartService = app(CartService::class);
+
+        if ($cartService->hasProduct($productSlug)) {
+            $cartService->removeProduct($productSlug);
+        } else {
+            $cartService->addProduct($productSlug);
+        }
     }
 }

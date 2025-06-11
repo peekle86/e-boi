@@ -28,7 +28,13 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <small class="text-body-secondary">{{ Number::currency($product->price) }}</small>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-primary">В корзину</button>
+                                <button type="button" class="btn btn-sm @if($cartService->hasProduct($product->slug)) btn-primary @else btn-outline-primary @endif" wire:click="toggleCartItem('{{ $product->slug }}')">
+                                    @if($cartService->hasProduct($product->slug))
+                                        В корзині
+                                    @else
+                                        Додати в корзину
+                                    @endif
+                                </button>
                             </div>
                         </div>
                     </div>

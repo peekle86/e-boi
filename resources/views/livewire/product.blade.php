@@ -25,6 +25,12 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
+            @elseif($images->count() < 1)
+                <div class="carousel-inner">
+                    <div @class(['carousel-item', 'active'])>
+                        <img src="{{ $product->getFirstMediaUrl() }}" class="d-block w-100" alt="{{ $product->title }}">
+                    </div>
+                </div>
         @endif
     </div>
         </div>
@@ -33,7 +39,13 @@
             <p>Опис: {{ $product->description }}</p>
             <p>В наявності: {{ $product->stock_quantity }}шт.</p>
             <p>Ціна: {{ Number::currency($product->price) }}</p>
-            <button type="button" class="btn btn-primary">Додати в корзину</button>
+            <button type="button" class="btn @if($cartService->hasProduct($product->slug)) btn-primary @else btn-outline-primary @endif" wire:click="toggleCartItem()">
+                @if($cartService->hasProduct($product->slug))
+                    В корзині
+                @else
+                    Додати в корзину
+                @endif
+            </button>
         </div>
     </div>
 </div>

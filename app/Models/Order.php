@@ -6,6 +6,7 @@ use App\Enums\OrderDeliveryTypeEnum;
 use App\Enums\OrderPaymentTypeEnum;
 use App\Enums\OrderStatusEnum;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
@@ -30,7 +31,7 @@ class Order extends Model
         'status' => OrderStatusEnum::NEW,
     ];
 
-    public function products()
+    public function products(): BelongsToMany
     {
         return $this->belongsToMany(
             Product::class,
@@ -40,5 +41,10 @@ class Order extends Model
         )
             ->withPivot('quantity', 'price')
             ->withTimestamps();
+    }
+
+    public function orderProducts(): HasMany
+    {
+        return $this->hasMany(OrderProduct::class);
     }
 }

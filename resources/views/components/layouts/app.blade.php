@@ -38,7 +38,7 @@
                        name="search" value="{{ request('search') }}"
                        aria-label="Search">
             </form>
-            <button type="button" class="btn btn-warning me-2">Cart</button>
+            <a href="{{ route('cart') }}" class="btn btn-warning me-2">Cart</a>
             </div>
         </div>
     </div>
