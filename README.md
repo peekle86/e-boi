@@ -8,9 +8,8 @@
 ```sh
 git clone git@github.com:peekle86/e-boi.git
 ```
-### 2. Go to project folder and install composer dependencies:
+### 2. Go to the project folder and install composer dependencies:
 ```shell
-cd comentor
 composer install
 ```
 ### 3. Copy .env.example file to .env
@@ -29,6 +28,18 @@ DB_PASSWORD=
 ### 5. Run migrations with seeders:
 ```shell
 php artisan migrate --seed
+```
+### 6. Generate application key
+```shell
+php artisan key:generate
+```
+### 7. Install npm dependencies
+```shell
+npm install
+```
+### 8. Build npm dependencies
+```shell
+npm run build
 ```
 
 ### Admin panel available by /admin path with credentials:
